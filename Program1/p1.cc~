@@ -1,0 +1,51 @@
+//Sheyn Denizov
+//09/25/13
+//Program 1
+//The purpose of this program is to develop a class whose objects
+//simulate the workings of A Stack data structure
+
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+//This is the class whose members and objects will simulate the Stack
+class Stack {
+private:
+  //Dynamic array that holds double values
+  double* stackArray;
+  //Index for array
+  int index;
+  int size;
+  //Register variable that can hold a double value
+  double reg;
+
+public:
+  //Initialize a default size for the double array
+  static const int DEFSIZE = 100;
+  //No arg constructor
+  Stack();
+  //One-arg constructor whose parameter defines the stack size
+  Stack(int size);
+  //Copy constructor
+  Stack(const Stack &s);
+  //Deconstructor deletes stack and sets its memory space to NULL
+  ~Stack(); 
+  Stack& push();
+  Stack& pop();
+  Stack& add();
+  Stack& sub();
+  Stack& mul();
+  Stack& div();
+  double getRegister();
+  Stack& setRegister(double reg);
+  void print(ostream &out = cout) const;
+  Stack& operator +=(double dbl);
+  friend bool operator ==(Stack &s, double dbl);
+  friend istream& operator >>(istream &in, Stack &s);
+  friend ostream& operator <<(ostream &out, Stack &s);
+private:
+  void check(bool exp, const char* msg);
+};
+
+int main
