@@ -2,7 +2,7 @@
 //09/25/13
 //Program 1
 //The purpose of this program is to develop a class whose objects
-//simulate the workings of A Stack data structure
+//simulate the workings of a Stack data structure
 
 #include <iostream>
 #include <stdlib.h>
@@ -199,7 +199,7 @@ ostream& operator <<(ostream &out, Stack &s) {
 void Stack::print(ostream &out) const {
   //Print out values using ostream out
   out << "Stack:(" << "";
-  for(int i = index -1; i >= 0; i--) {
+  for(int i = index - 1; i >= 0; i--) {
     out << stackArray[i] << " ";
   }
   out << ")" << "";
