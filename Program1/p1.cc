@@ -120,4 +120,101 @@ Stack& Stack::pop() {
 }
 
 Stack& Stack::add() {
+  check(index >= 2, "(Stack::add() Index must be at least 2)");
+  double number1 = stackArray[index - 1];
+  double number2 = stackArray[index - 2];
+  double sum = number1 + number2;
+  index = index - 2;
+  setRegister(sum).push();
+  return *this;
 }
+
+Stack& Stack::sub() {
+  check(index >= 2, "(Stack::sub() Index must be at least 2)");
+  double number1 = stackArray[index - 1];
+  double number2 = stackArray[index - 2];
+  double subtract = number2 - number1;
+  index = index - 2;
+  setRegister(subtract).push();
+  return *this;
+}
+
+Stack& Stack::mul() {
+  check(index >= 2, "(Stack::mul() Index must be at least 2)");
+  double number1 = stackArray[index - 1];
+  double number2 = stackArray[index - 2];
+  double mult = number1 * number2;
+  index = index - 2;
+  setRegister(mult).push();
+  return *this;
+}
+
+Stack& Stack::div() {
+  check(index >= 2, "(Stack::div() Index must be at least 2)");
+  double number1 = stackArray[index - 1];
+  double number2 = stackArray[index - 2];
+  double divide = number2 / number1;
+  index = index - 2;
+  setRegister(divide).push();
+  return *this;
+}
+
+double Stack::getRegister() {
+  return reg;
+}
+
+Stack& Stack::setRegister(double dbl) {
+  reg = dbl;
+  return *this;
+}
+
+Stack& Stack::operator +=(double dbl) {
+  //Add the reg value to the double and make reg now equal to that sum
+  double sum = reg + dbl;
+  reg = sum;
+  return *this;
+}
+
+bool operator ==(Stack &s, double dbl) {
+  bool isEqual = false;
+  if(s.getRegister() == dbl) {
+    isEqual = true;
+  }
+  return isEqual;
+}
+
+istream& operator >>(istream &in, Stack &s) {
+  double number;
+  //Take in a double value and make it equal to the reg value of s
+  in >> number;
+  s.reg = number;
+  return in;
+}
+
+ostream& operator <<(ostream &out, Stack &s) {
+  s.print(out);
+  return out;
+}
+
+void Stack::print(ostream &out) const {
+  //Print out values using ostream out
+  out << "Stack:(" << "";
+  for(int i = index -1; i >= 0; i--) {
+    out << stackArray[i] << " ";
+  }
+  out << ")" << "";
+  out << endl;
+}
+
+/*
+Expect 5: 5
+Expect Stack:(20 15 4 ): Stack:(20 15 4 )
+Expect Stack:(300 44): Stack:(300 4 )
+Expect Stack(4): Stack:(4 )
+Expect 37.5: 37.5
+Expect Stack:(-33.5): Stack:(-33.5)
+100
+Expect 165.5: 165.5
+Expect 1: 1
+(Stack::pop() stack underflow)
+*/
