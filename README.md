@@ -1,1 +1,1 @@
-These programming assignments that led for a C++ Systems Programming class, CSE 109. The final resut was a simple parser for a fictional language, SkLang.
+These programming assignments that led to a parser for a C/C++ Systems Programming class, CSE 109. The final result was a simple parser for a fictional language, SkLang. Each program built upon the one before it.
